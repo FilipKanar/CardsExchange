@@ -35,4 +35,11 @@ public class User {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="user_role")
     private Set<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Card> cards;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="user_friend")
+    private Set<User> friends;
 }

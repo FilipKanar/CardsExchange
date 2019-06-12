@@ -1,2 +1,3 @@
 INSERT INTO role VALUES (1,'ADMIN');
 INSERT INTO role VALUES (10,'USER');
+INSERT INTO card VALUES (1,'insta',22,null)
