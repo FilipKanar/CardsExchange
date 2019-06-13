@@ -38,8 +38,4 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Card> cards;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="user_friend")
-    private Set<User> friends;
 }

@@ -38,7 +38,6 @@ public class CardController {
             if(card.getUser()!=null){
                 friendsRequestService.saveFriendRequest(user.getId(),card.getUser().getId());
             }
-            System.out.println("TEST " + user);
             cardService.findCardByNumber(number).setUser(user);
             cardService.saveCard(card);
             modelAndView = new ModelAndView(new RedirectView("/home"));

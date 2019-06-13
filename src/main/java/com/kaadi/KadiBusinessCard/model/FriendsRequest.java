@@ -19,4 +19,7 @@ public class FriendsRequest {
     @Column(name = "answering_user_id")
     private int answerUserId;
 
+    @Column(name = "is_accepted")
+    private int isAccepted;
+
 }

@@ -4,6 +4,7 @@
 
 <head>
     <Title>Homepage</Title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -38,14 +39,31 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">STH</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cards</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Card 1</a>
-                        <a class="dropdown-item" href="#">Card 2</a>
-                        <a class="dropdown-item" href="#">Card 3</a>
-                    </div>
-                </li>
+                <div th:if="${!invitedByList.isEmpty()}">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Friends Requests</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div th:each="invitation : ${invitedByList}">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th scope="col" th:text="${userService.findUserById(invitation.requestUserId).getUsername()}"></th>
+                                        <th scope="col">
+                                            <form action="/acceptFriendsRequest" method="post">
+                                                <button name="id" th:value="${invitation.id}" type="submit">Accept</button>
+                                            </form>
+                                            <form action="/refuseFriendsRequest" method="post">
+                                                <button name="id" th:value="${invitation.id}" type="submit">Refuse</button>
+                                            </form>
+                                        </th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+
             </ul>
         </div>
     </nav>
