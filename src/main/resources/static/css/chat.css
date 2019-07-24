@@ -1,0 +1,11 @@
+.body{
+    height: 500px;
+    width: 500px;
+    margin: 5px;
+}
+
+.type-row{
+    position: fixed;
+    bottom: 0px;
+    height: 50px;
+}

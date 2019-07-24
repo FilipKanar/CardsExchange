@@ -16,6 +16,9 @@ public class FriendsRequestService {
     FriendsRequestRepository friendsRequestRepository;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     public FriendsRequestService(FriendsRequestRepository friendsRequestRepository){
         this.friendsRequestRepository=friendsRequestRepository;
     }
@@ -41,6 +44,22 @@ public class FriendsRequestService {
             }
         }
         return invitedByList;
+    }
+
+    public ArrayList<User> friendsList(User user){
+        ArrayList<User> friendsList = new ArrayList<>();
+        for(FriendsRequest friendsRequest : friendsRequestRepository.findAll()){
+            if(friendsRequest.getAnswerUserId()==user.getId()||friendsRequest.getRequestUserId()==user.getId()){
+                if(friendsRequest.getIsAccepted()==1){
+                    if(friendsRequest.getAnswerUserId()==user.getId()){
+                        friendsList.add(userRepository.findById(friendsRequest.getRequestUserId()));
+                    } else {
+                        friendsList.add(userRepository.findById(friendsRequest.getAnswerUserId()));
+                    }
+                }
+            }
+        }
+        return friendsList;
     }
 
     public void setFriendsRequestActive(FriendsRequest friendsRequest){

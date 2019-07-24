@@ -68,7 +68,23 @@
         </div>
     </nav>
 </header>
-<p>Homepage</p>
+<div class="container-fluid border">
+    <div class="row border">
+        <div class="col-md-3 border">
+            <div class="container border">
+                <h3>Friends List</h3>
+                <div th:each="friend : ${friendsList}">
+                    <div class="row border">
+                        <form th:action="${'/userChat/'+friend.id}" method="post">
+                            <button th:text="${friend.email}" name="friendId" th:value="${friend.id}" type="submit"></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
 
 </html>

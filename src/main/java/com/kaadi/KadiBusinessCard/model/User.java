@@ -32,6 +32,12 @@ public class User {
     @Column(name="active")
     private int active;
 
+    @Column(name="linkedin")
+    private String linkedin;
+
+    @Column(name="facebook")
+    private String facebook;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="user_role")
     private Set<Role> roles;

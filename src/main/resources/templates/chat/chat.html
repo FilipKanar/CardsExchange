@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <Title>Homepage</Title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chat.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container-fluid border">
+<div class="col-9 border">
+    <div class="container">
+        <h3 th:text="${friend.email}"></h3>
+            <div th:each="message : ${messages}">
+                <text style="font-size: 8px;color: cadetblue" th:text="${message.time}"></text>
+                <text style="font-size:12px" th:text="${message.content}"></text>
+            </div>
+        </div>
+        <div class="row type-row">
+            <form class="form-inline" th:action="${'/sendMessage/'+friend.id}">
+                <input type="text" placeholder="Type a message.." name="sendMessage" class="input"/>
+                <button type="submit" id="sendButton" class="btn">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+
+</html>

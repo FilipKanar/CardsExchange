@@ -2,7 +2,6 @@ package com.kaadi.KadiBusinessCard.controller;
 
 import com.kaadi.KadiBusinessCard.model.FriendsRequest;
 import com.kaadi.KadiBusinessCard.model.User;
-import com.kaadi.KadiBusinessCard.service.CardService;
 import com.kaadi.KadiBusinessCard.service.FriendsRequestService;
 import com.kaadi.KadiBusinessCard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +27,13 @@ public class MainController {
     public ModelAndView mainSite(){
         ModelAndView modelAndView=new ModelAndView();
         List<FriendsRequest> userFriendsRequest = new ArrayList<>();
+        List<User> friendsList = new ArrayList<>();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         userFriendsRequest=friendsRequestService.invitedBy(user);
+        friendsList=friendsRequestService.friendsList(user);
         modelAndView.addObject("invitedByList", userFriendsRequest);
+        modelAndView.addObject("friendsList", friendsList);
         modelAndView.addObject("userService",userService);
         modelAndView.addObject("friendsRequestService",friendsRequestService);
         modelAndView.setViewName("main/home");
