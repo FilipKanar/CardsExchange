@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <Title>Settings</Title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/settings.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Kaadi</a>
+    </nav>
+</header>
+<form autocomplete="on" th:action="@{/saveUserDetails}" th:object="${user}" method="post">
+    <h2>User Details:</h2>
+    <input type="text" th:field="*{username}">
+    <input type="text" th:field="*{linkedin}">
+    <input type="text" th:field="*{facebook}">
+    <button type="submit" class="btn">Save User Details</button>
+</form>
+</body>
+</html>
