@@ -1,8 +1,23 @@
-.dropdown{
-    width: auto;
-    height: auto;
+.full-background {
+    height: 100vh;
 }
 
-.form-friendsrequest{
+.invitation-box {
+    height: 50px;
+    width: 100%;
     display: inline;
+    border: 7px solid greenyellow !important;
+
+}
+
+.vertical-center{
+    mergin: 0;
+    position :absolute;
+    top: 50%;
+    border: 5px solid blueviolet !important;
+}
+
+h6 {
+    font-size: large;
+    color: #0275d8;
 }

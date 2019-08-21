@@ -1,5 +1,32 @@
+body,html{
+    height: 100%;
+    width: 100%;
+}
+
 .validation-message{
     font-style: normal;
     font-size: 12px;
     color: #FF1C19;
+}
+
+.whole-background {
+    height: 100vh;
+}
+
+.container-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+h3 {
+    font-size: xx-large;
+    color: #0275d8;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }

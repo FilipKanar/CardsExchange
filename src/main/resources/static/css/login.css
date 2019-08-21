@@ -1,29 +1,51 @@
-.wrapper {
-    margin-top: 80px;
-    margin-bottom: 20px;
+html{
+    height: 100%;
+    width: 100%;
 }
 
-.form-signin {
-    max-width: 420px;
-    padding: 30px 38px 66px;
-    margin: 0 auto;
-    background-color: #eee;
-    border: 3px dotted rgba(0,0,0,0.1);
+body{
+    height: 100%;
+    width: 100%;
 }
 
-.form-signin-heading {
-    text-align: center;
-    margin-bottom: 30px;
+.full-background{
+    height: 100vh;
 }
 
-input[type="text"]{
-    margin-bottom: 0px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+
+.form-box {
+    padding: 10px;
+    width: 400px;
 }
 
-input[type="password"]{
-    margin-bottom: 20px;
-    border-top-left-radius: 0;
-    border-bottom-right-radius: 0;
+.container-fluid {
+    padding: 0px;
+}
+
+.container-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h3 {
+    font-size: xx-large;
+    color: #0275d8;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.not-last-input {
+    margin-bottom: 10px;
+}
+
+.btn-margins{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.photo-login{
+    width: 80%;
+    height: 80%;
 }
