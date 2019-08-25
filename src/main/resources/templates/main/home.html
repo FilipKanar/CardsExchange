@@ -13,85 +13,100 @@
 
 <body>
 
-<div class="container-fluid full-background">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">
-            <img src="/images/kaadi-white.png" width="43" height="30" class="d-inline-block align-top" alt="">
-            Kaadi
-        </a>
-        <div th:if="${!invitedByList.isEmpty()}">
-            <ul class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                    Friends Invitations
-                    <img src="images/friends.png" width="23" height="23" class="d-inline-block align-top" alt="">
-                </a>
-                <div class="dropdown-menu">
-                    <div th:each="invitation : ${invitedByList}">
-                        <div class="table-box">
-                            <table class="table">
-                                <thead>
-                                    <div class="container">
-                                        <a class="text" style="font-size: larger; color: #0275d8; margin-bottom: 30px">Invitations:</a>
-                                    </div>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row"
-                                        th:text="${userService.findUserById(invitation.requestUserId).getUsername()}"></th>
-                                    <th scope="row">
-                                        <form action="/acceptFriendsRequest" method="post">
-                                            <button class="btn btn-outline-success" name="id"
-                                                    th:value="${invitation.id}"
-                                                    type="submit">Accept
-                                            </button>
-                                        </form>
-                                    </th>
-                                    <th scope="row">
-                                        <form action="/refuseFriendsRequest" method="post">
-                                            <button class="btn btn-outline-danger" name="id" th:value="${invitation.id}"
-                                                    type="submit">Refuse
-                                            </button>
-                                        </form>
-                                    </th>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">
+        <img src="/images/kaadi-white.png" width="43" height="30" class="d-inline-block align-top" alt="">
+        Kaadi
+    </a>
 
+    <div class="collapse navbar-collapse justify-content-end" id="homeNavbar">
+        <ul class="navbar-nav">
+            <div th:if="${!invitedByList.isEmpty()}">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                        Friends Invitations
+                        <img src="images/kaadi-black.png" width="35" height="25" class="d-inline-block align-top"
+                             alt="">
+                    </a>
+                    <div class="dropdown-menu">
+                        <div th:each="invitation : ${invitedByList}">
+                            <div class="table-box">
+                                <table class="table">
+                                    <thead>
+                                    <div class="container">
+                                        <a class="text"
+                                           style="font-size: larger; color: #0275d8; margin-bottom: 30px">Invitations:</a>
+                                    </div>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row"
+                                            th:text="${userService.findUserById(invitation.requestUserId).getUsername()}"></th>
+                                        <th scope="row">
+                                            <form action="/acceptFriendsRequest" method="post">
+                                                <button class="btn btn-outline-success" name="id"
+                                                        th:value="${invitation.id}"
+                                                        type="submit">Accept
+                                                </button>
+                                            </form>
+                                        </th>
+                                        <th scope="row">
+                                            <form action="/refuseFriendsRequest" method="post">
+                                                <button class="btn btn-outline-danger" name="id"
+                                                        th:value="${invitation.id}"
+                                                        type="submit">Refuse
+                                                </button>
+                                            </form>
+                                        </th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-            </ul>
-        </div>
-        <div class="collapse navbar-collapse justify-content-end" id="homeNavbar">
-            <div class="navbar-nav">
+                </li>
+            </div>
+            <li class="nwv-item">
                 <a class="nav-link" href="/settings">
                     Settings <img src="/images/settings-icon.png" width="25" height="25"
                                   class="d-inline-block align-top" alt="">
                 </a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container-fluid">
-        <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div th:each="friend : ${friendsList}">
-                        <div class="row border friend-field">
-                            <form th:action="${'/userChat/'+friend.id}" method="post">
-                                <button th:text="${friend.email}" name="friendId" th:value="${friend.id}"
-                                        type="submit"></button>
-                            </form>
-                        </div>
-                    </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-md-6 border">
+        <div th:each="friend : ${friendsList}">
+            <div class="row">
+                <div class="col-3 col-md-3">
+                    <img class="img-fluid" src="/images/friends.png" alt="">
                 </div>
-            <div class="col-sm-12 col-md-6">
-                    <a class="btn" data-toggle="modal" data-target="#addCardModal">Add Card</a>
+                <div class="col-6 col-md-3">
+                    <div th:text="${friend.email}"></div>
+                </div>
+                <div class="col-1 col-md-2 image-column">
+                    <img class="img-fluid" src="/images/facebook-logo.png" alt="">
+                </div>
+                <div class="col-1 col-md-2 image-column">
+                    <img class="img-fluid" src="/images/linked-in-logo.png" alt="">
+                </div>
+                <div class="col-1 col-md-2">
+                    <form th:action="${'/userChat/'+friend.id}" method="post">
+                        <button class="btn btn-primary" name="friendId" th:value="${friend.id}"
+                                type="submit">
+                            <img class="img-fluid" src="/images/chat-icon.png" alt="">
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+<div class="col-md-6 border">
+    <a class="btn" data-toggle="modal" data-target="#addCardModal">Add Card</a>
 </div>
-
-
+    </div>
 <div class="modal" id="addCardModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
