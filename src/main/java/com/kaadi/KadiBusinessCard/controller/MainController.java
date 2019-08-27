@@ -1,7 +1,9 @@
 package com.kaadi.KadiBusinessCard.controller;
 
+import com.kaadi.KadiBusinessCard.model.Card;
 import com.kaadi.KadiBusinessCard.model.FriendsRequest;
 import com.kaadi.KadiBusinessCard.model.User;
+import com.kaadi.KadiBusinessCard.service.CardService;
 import com.kaadi.KadiBusinessCard.service.FriendsRequestService;
 import com.kaadi.KadiBusinessCard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +25,27 @@ public class MainController {
     @Autowired
     FriendsRequestService friendsRequestService;
 
+    @Autowired
+    CardService cardService;
+
     @GetMapping({"/","/home"})
     public ModelAndView mainSite(){
         ModelAndView modelAndView=new ModelAndView();
+
         List<FriendsRequest> userFriendsRequest = new ArrayList<>();
         List<User> friendsList = new ArrayList<>();
+        List<Card> cardsList = new ArrayList<>();
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
+
         userFriendsRequest=friendsRequestService.invitedBy(user);
         friendsList=friendsRequestService.friendsList(user);
+        cardsList= cardService.findAllByUser(user);
+
         modelAndView.addObject("invitedByList", userFriendsRequest);
         modelAndView.addObject("friendsList", friendsList);
+        modelAndView.addObject("cardsList", cardsList);
         modelAndView.addObject("userService",userService);
         modelAndView.addObject("friendsRequestService",friendsRequestService);
         modelAndView.setViewName("main/home");

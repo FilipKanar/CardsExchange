@@ -27,9 +27,6 @@ public class MessageService {
     public List<Message> getAllFriendRelatedMessages(int id,int secondId){
         Set<Message> messageSet = new HashSet<>(messageRepository.findAllBySenderIdAndReceiverId(id,secondId));
         messageSet.addAll(messageRepository.findAllBySenderIdAndReceiverId(secondId,id));
-        System.out.println("<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>");
-        System.out.println(messageSet);
-        System.out.println("<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>");
         return new ArrayList<Message>(messageSet);
     }
 

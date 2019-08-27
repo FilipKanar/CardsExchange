@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Collection;
+
 
 @Controller
 public class ChatController {
@@ -33,7 +35,6 @@ public class ChatController {
 
     @GetMapping("/sendMessage/{sendToId}")
     public ModelAndView sendMessage(@PathVariable int sendToId,@RequestParam("sendMessage") String messageContent){
-        System.out.println("<><><><><><><><><>" + SecurityContextHolder.getContext().getAuthentication().getName());
         Message message = new Message(messageContent, userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).getId(), sendToId);
         messageService.saveMessage(message);
         return new ModelAndView(new RedirectView("/userChat/"+sendToId));

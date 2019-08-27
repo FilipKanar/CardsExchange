@@ -11,17 +11,53 @@
 </head>
 
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Kaadi</a>
-    </nav>
-</header>
-<form autocomplete="on" th:action="@{/saveUserDetails}" th:object="${user}" method="post">
-    <h2>User Details:</h2>
-    <input type="text" th:field="*{username}">
-    <input type="text" th:field="*{linkedin}">
-    <input type="text" th:field="*{facebook}">
-    <button type="submit" class="btn">Save User Details</button>
-</form>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/home">
+        <img src="/images/kaadi-white.png" width="43" height="30" class="d-inline-block align-top" alt="">
+        Kaadi
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="navbar-item">
+                <a class="nav-link" href="/logout">
+                    Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <form autocomplete="on" th:action="@{/saveUserDetails}" th:object="${user}" method="post">
+    <div class="row rounded" style="border: #0275d8 1px solid; margin-top: 10px">
+        <div class="col-12">
+        <h1>User details:</h1>
+        </div>
+            <div class="col-12 col-sm-3" style="margin-top: 10px">
+                <h5>Username:</h5>
+            </div>
+            <div class="col-12 col-sm-9" style="margin-top: 10px">
+                <input class="form-control" type="text" th:field="*{username}">
+            </div>
+            <div class="col-12 col-sm-3" style="margin-top: 10px">
+                <h5>Linked In:</h5>
+            </div>
+            <div class="col-12 col-sm-9" style="margin-top: 10px">
+                <input class="form-control" type="text" th:field="*{linkedin}" placeholder="Profile link (**.linkedin.com/**)">
+            </div>
+            <div class="col-12 col-sm-3" style="margin-top: 10px">
+                <h5>Facebook:</h5>
+            </div>
+            <div class="col-12 col-sm-9" style="margin-top: 10px">
+                <input class="form-control" type="text" th:field="*{facebook}" placeholder="Profile link (**.facebook.com/**)">
+            </div>
+            <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+                <button type="submit" class="btn btn-primary" style="width: 100%">Save User Details</button>
+            </div>
+    </div>
+    </form>
+</div>
 </body>
 </html>
