@@ -95,10 +95,10 @@
                         <div th:text="${friend.email}"></div>
                     </div>
                     <div class="col-2">
-                        <a href="#" class="badge">
+                        <a th:href="${friend.facebook}" class="badge">
                             <img class="img-fluid" src="/images/facebook-logo.png" alt="">
                         </a>
-                        <a href="#" class="badge">
+                        <a th:href="${friend.linkedin}" class="badge">
                             <img class="img-fluid" src="/images/linked-in-logo.png" alt="">
                         </a>
                         <a th:href="${'/userChat/'+friend.id}" class="badge">

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 @Controller
@@ -27,8 +29,17 @@ public class ChatController {
     public ModelAndView userChat(@PathVariable int userId){
         ModelAndView modelAndView=new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        modelAndView.addObject("messages", messageService.getAllFriendRelatedMessages(userId, userService.findUserByEmail(auth.getName()).getId()));
+        ArrayList<Message> tempArr = new ArrayList<Message>();
+        tempArr.addAll(messageService.getAllFriendRelatedMessages(userId, userService.findUserByEmail(auth.getName()).getId()));
+        Collections.sort(tempArr, new Comparator<Message>() {
+            @Override
+            public int compare(Message message, Message t1) {
+                return message.getTime().compareTo(t1.getTime());
+            }
+        }.reversed());
+        modelAndView.addObject("messages", tempArr);
         modelAndView.addObject("friend", userService.findUserById(userId));
+        modelAndView.addObject("current", userService.findUserByEmail(auth.getName()).getUsername());
         modelAndView.setViewName("chat/chat");
         return modelAndView;
     }
