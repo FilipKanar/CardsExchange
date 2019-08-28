@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class FriendsRequestService {
@@ -46,20 +48,20 @@ public class FriendsRequestService {
         return invitedByList;
     }
 
-    public ArrayList<User> friendsList(User user){
-        ArrayList<User> friendsList = new ArrayList<>();
+    public ArrayList<User> friendsSet(User user){
+        Set<User> friendsSet = new HashSet<User>();
         for(FriendsRequest friendsRequest : friendsRequestRepository.findAll()){
             if(friendsRequest.getAnswerUserId()==user.getId()||friendsRequest.getRequestUserId()==user.getId()){
                 if(friendsRequest.getIsAccepted()==1){
                     if(friendsRequest.getAnswerUserId()==user.getId()){
-                        friendsList.add(userRepository.findById(friendsRequest.getRequestUserId()));
+                        friendsSet.add(userRepository.findById(friendsRequest.getRequestUserId()));
                     } else {
-                        friendsList.add(userRepository.findById(friendsRequest.getAnswerUserId()));
+                        friendsSet.add(userRepository.findById(friendsRequest.getAnswerUserId()));
                     }
                 }
             }
         }
-        return friendsList;
+        return new ArrayList<User>(friendsSet);
     }
 
     public void setFriendsRequestActive(FriendsRequest friendsRequest){
