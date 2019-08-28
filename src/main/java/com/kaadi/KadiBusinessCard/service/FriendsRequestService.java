@@ -48,7 +48,7 @@ public class FriendsRequestService {
         return invitedByList;
     }
 
-    public ArrayList<User> friendsSet(User user){
+    public ArrayList<User> friendsList(User user){
         Set<User> friendsSet = new HashSet<User>();
         for(FriendsRequest friendsRequest : friendsRequestRepository.findAll()){
             if(friendsRequest.getAnswerUserId()==user.getId()||friendsRequest.getRequestUserId()==user.getId()){
