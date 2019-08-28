@@ -1,7 +1,5 @@
 package com.kaadi.KadiBusinessCard.controller;
 
-import com.kaadi.KadiBusinessCard.model.FriendsRequest;
-import com.kaadi.KadiBusinessCard.model.User;
 import com.kaadi.KadiBusinessCard.service.FriendsRequestService;
 import com.kaadi.KadiBusinessCard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

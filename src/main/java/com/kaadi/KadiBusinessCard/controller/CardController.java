@@ -40,10 +40,7 @@ public class CardController {
             }
             cardService.findCardByNumber(number).setUser(user);
             cardService.saveCard(card);
-            modelAndView = new ModelAndView(new RedirectView("/home"));
-        } else {
-            modelAndView.setViewName("/cardNumberError");
         }
-        return modelAndView;
+        return modelAndView = new ModelAndView(new RedirectView("/home"));
     }
 }

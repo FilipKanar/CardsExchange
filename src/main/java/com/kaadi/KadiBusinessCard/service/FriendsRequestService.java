@@ -31,9 +31,19 @@ public class FriendsRequestService {
 
     public FriendsRequest saveFriendRequest(int requestUserId, int answerUserId){
         FriendsRequest friendsRequest=new FriendsRequest();
+
         friendsRequest.setRequestUserId(requestUserId);
         friendsRequest.setAnswerUserId(answerUserId);
-        friendsRequest.setIsAccepted(0);
+        for(FriendsRequest request : friendsRequestRepository.findAll()){
+            if(!((request.getAnswerUserId() == answerUserId && request.getRequestUserId() ==requestUserId)
+                    || (request.getAnswerUserId() == requestUserId && request.getRequestUserId()==answerUserId)
+                    || (request.getAnswerUserId() == answerUserId && request.getRequestUserId() == answerUserId)
+                    || (request.getAnswerUserId() == requestUserId && request.getRequestUserId()==requestUserId))){
+                friendsRequest.setIsAccepted(0);
+            }else{
+                friendsRequest.setIsAccepted(2);
+            }
+        }
         return friendsRequestRepository.save(friendsRequest);
     }
 
