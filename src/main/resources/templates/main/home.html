@@ -166,7 +166,7 @@
                 <form th:action="@{/addCard}" method="post" class="form-signin">
                     <label for="number">Card number (currently in database 1-10 - other will redirect you to homepage):</label>
                     <input type="number" id="number" name="number" th:placeholder="Card_Number"
-                           class="form-control"/>
+                           class="form-control" required/>
                     <button class="btn btn-lg btn-primary btn-block float-right" name="Submit" value="AddCard"
                             type="submit" th:text="Add" style="margin-top : 15px">
                     </button>

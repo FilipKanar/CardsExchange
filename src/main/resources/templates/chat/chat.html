@@ -44,7 +44,7 @@
             <form class="form-group" th:action="${'/sendMessage/'+friend.id}">
                 <div class="row">
                     <div class="col-12 col-sm-10" style="width: 100%;">
-                        <input type="text" placeholder="Type a message.." name="sendMessage" class="form-control"/>
+                        <input type="text" placeholder="Type a message.." name="sendMessage" class="form-control" required/>
                     </div>
                     <div class="col-12 col-sm-2">
                         <button type="submit" id="sendButton" class="btn btn-primary">Send</button>
